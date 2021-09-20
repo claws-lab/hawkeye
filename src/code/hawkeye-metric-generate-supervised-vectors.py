@@ -25,5 +25,5 @@ for tweetId in tqdm(totalTweets):
         
     tweet_vectors[tweetId] = tweet_vector 
           
-with open('results/tweet_vectors_supervised.pickle', 'wb') as handle:
+with open('results/hawkeye_metric_tweet_vectors_supervised.pickle', 'wb') as handle:
     pickle5.dump(tweet_vectors, handle)

@@ -112,8 +112,8 @@ if __name__ == '__main__':
     init_goodness = 1
     convergence_threshold = 0.001
     
-    notesGlobal = pd.read_csv("notes-00000-13-04-21.tsv", sep='\t')
-    ratingsGlobal = pd.read_csv("ratings-00000-13-04-21.tsv", sep='\t')
+    notesGlobal = pd.read_csv("..//data//notes-00000-13-04-21.tsv", sep='\t')
+    ratingsGlobal = pd.read_csv("..//data//ratings-00000-13-04-21.tsv", sep='\t')
     notesGlobal = notesGlobal[['noteId', 'participantId','tweetId','classification']]
     ratingsGlobal = ratingsGlobal[['noteId', 'participantId','helpful','notHelpful']]
     
