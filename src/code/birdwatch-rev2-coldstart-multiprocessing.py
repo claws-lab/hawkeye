@@ -1,13 +1,8 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-from time import time
 import numpy as np
 import random,string
 import multiprocessing
 import math
-import os
-from multiprocessing import Process,Manager
 import pickle
 
 def getCurrentTopGoodNotesForTweet(notes,ratings,tweetId,topNotes = 3,minRatingsNeeded = 5,minGoodnessNeeded = 0.75):
@@ -270,57 +265,9 @@ def processTweet(results,tweetId,keywordArgs):
                                isInsertion=True,isReplacement=True)
     else:
         print("Case not allotted ? : ",tweetId)
-    
-def driverFunction(results,allTweets,start_idx,end_idx,keywordArgs):
-    
-    allTweetsThisProcess = allTweets[start_idx:end_idx]
-    for tweetId in allTweetsThisProcess:
-
-        processTweet(results,tweetId,keywordArgs)
         
-        #track progress
-        intermediate_results = {'insertion':dict(results['insertion']),'replacement':dict(results['replacement'])}
-        work_done = len(intermediate_results['insertion'])+len(intermediate_results['replacement']) + len(results["default"])
-        if work_done%5==0:
-            print(work_done*100/len(allTweets)," % tweets processed")
-
-
-def send_list_to_workers(num_processes, list_to_split, worker_func_ptr,keywordArgs):
-    """    Given a list of work, and a desired number of n workers, launch n worker processes
-        that will each process 1/nth of the total work.
-        Args:
-        -    num_processes: integer, number of workers to launch
-        -    list_to_split: 
-        -    worker_func_ptr: function pointer
-        -    **kwargs:
-        Returns:
-        -    None
-    """
-    manager = Manager()
-    results = manager.dict()
-    results["insertion"] = manager.dict()
-    results["replacement"] = manager.dict()
-    results["default"] = manager.list()
-
-    jobs = []
-    num_items = len(list_to_split)
-    print(f'Will split {num_items} tweets between {num_processes} workers')
-    chunk_sz = math.ceil(num_items/num_processes)
-    print("Chunk size is = ",chunk_sz)
-    for i in range(num_processes):
-        start_idx = chunk_sz*i
-        end_idx = start_idx + chunk_sz
-        end_idx = min(end_idx,num_items)
-        print(f'{start_idx}->{end_idx}')
-        p = multiprocessing.Process(target=worker_func_ptr,
-                                    args=(results,list_to_split,start_idx,end_idx,
-                                          keywordArgs))
-        jobs.append(p)
-        p.start()
-    for job in jobs:
-        job.join()
-
     return results
+    
 ##########################################################################################
     
 if __name__ == '__main__':
@@ -328,6 +275,7 @@ if __name__ == '__main__':
     maxCurrentTopGoodNotes = 1
     minRatingsNeeded = 5
     maxAccountsToBreak = 10
+    #CHANGE GOODNESS AS NEEDED
     minGoodnessNeeded = 0.01
     init_lambda = 0.1
     init_goodness = 1
@@ -358,6 +306,8 @@ if __name__ == '__main__':
     print("Initial REV2 done!")
     
     totalTweets = list(set(notesGlobal['tweetId']))
+    #CHANGE THE CHUNK OF TWEETS YOU WANT TO PROCESS 
+    #IF YOU WANT TO DO IT IN BATCHES 
     #start,end = 0,1225
     #start,end = 1225,2450
     #start,end = 2450,3675
@@ -381,8 +331,10 @@ if __name__ == '__main__':
                     'mu_t' : mu_t,
                     'mu_g' : mu_g}
     
-    results = send_list_to_workers(num_processes, allTweets, driverFunction,keywordArgs) 
-    
+    results = {}
+    for tweetId in allTweets:
+        results = processTweet(results,tweetId,keywordArgs)
+        
     insertion = dict(results['insertion'])
     replacement = dict(results['replacement'])
     default = list(results['default'])
