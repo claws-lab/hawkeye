@@ -1,3 +1,5 @@
+'''This script '''
+
 import pandas as pd
 from tqdm import tqdm
 import random
@@ -33,7 +35,6 @@ def findNumberOfAccountsNeeded(ratingsWithNotesForTweet,candidateNotes,currently
             scoredNotesDummy.loc[randomNoteId, 'numRatings'] += numberOfAccounts
 
         if replacement:
-            #at the same time add not helpful to the top 3 notes
             for top3NoteId in currentlyRatedHelpfulNotesIds:
                 scoredNotesDummy.loc[top3NoteId, 'numRatings'] += numberOfAccounts
                 scoredNotesDummy.loc[top3NoteId, 'notHelpful'] += numberOfAccounts
