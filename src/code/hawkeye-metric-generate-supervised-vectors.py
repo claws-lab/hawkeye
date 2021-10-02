@@ -1,3 +1,8 @@
+'''This script is used to generate the vectors, which will be used to trais a model
+to detect misinformation tweets. Each tweet is represetned as a feature vector of its 
+accuracy scores across multiple runs of HawkEye for different combinations of values 
+of the weighing constants  and of the smoothing parameters'''
+
 import pandas as pd
 import pickle5
 import itertools
