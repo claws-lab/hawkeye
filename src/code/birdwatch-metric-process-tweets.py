@@ -1,4 +1,4 @@
-'''This script '''
+'''This script is used to collect the results for the Birdwatch system.'''
 
 import pandas as pd
 from tqdm import tqdm
@@ -9,6 +9,7 @@ import pickle
 notes = pd.read_csv("..//data//notes-00000-13-04-21.tsv", sep='\t')
 ratings = pd.read_csv("..//data//ratings-00000-13-04-21.tsv", sep='\t')
 
+'''This function is used to get the top-ranked notes for the tweet that satisfy the criteria'''
 def getCurrentlyRatedHelpfulNotesForTweet(ratingsWithNotesForTweet,maxCurrentlyRatedHelpfulNotes = None,minRatingsNeeded = None,minHelpfulnessRatioNeeded = None):
     
     scoredNotes = ratingsWithNotesForTweet.groupby('noteId').sum()
@@ -16,19 +17,27 @@ def getCurrentlyRatedHelpfulNotesForTweet(ratingsWithNotesForTweet,maxCurrentlyR
     filteredNotes = scoredNotes[(scoredNotes['numRatings'] >= minRatingsNeeded) & (scoredNotes['helpfulnessRatio'] >= minHelpfulnessRatioNeeded)]
     return filteredNotes.sort_values(by='helpfulnessRatio', ascending=False)[:maxCurrentlyRatedHelpfulNotes]
 
+'''This function is used to find the minimum number of fake accounts needed 
+for the note to become the top ranked note and meet all the criteria.'''
+
 def findNumberOfAccountsNeeded(ratingsWithNotesForTweet,candidateNotes,currentlyRatedHelpfulNotesIds,insertion=None,replacement=None):
     
     scoredNotes = ratingsWithNotesForTweet.groupby('noteId').sum()
     scoredNotes['helpfulnessRatio'] = scoredNotes['helpful']/scoredNotes['numRatings']
 
     #For a random note, do a run through of all the possible number of accounts one can use 
-    #to rate this note helpful and bring it to "Currently Rated Helpful" (if it is currently not)
+    #to rate this note helpful and bring it to "Currently Rated Helpful" 
+    #i.e. top-ranked note in Birdwatrch system(if it is currently not) 
       
     randomNoteId = random.choice(list(candidateNotes))
     numberOfAccounts = 1
     while(True):
 
         scoredNotesDummy = scoredNotes.copy(deep=True)
+
+        '''We iteratively add fake accounts, which give fake 'helpful' 
+        ratings to the note and 'not helpful' 
+        ratings to notes currently ranked at the top.''' 
         if insertion:
             #add helpful ratings to random note id
             scoredNotesDummy.loc[randomNoteId, 'helpful'] += numberOfAccounts
@@ -43,16 +52,19 @@ def findNumberOfAccountsNeeded(ratingsWithNotesForTweet,candidateNotes,currently
         filteredNotesAboveThreshold = scoredNotesDummy[(scoredNotesDummy['numRatings'] >= minRatingsNeeded) & (scoredNotesDummy['helpfulnessRatio'] >= minHelpfulnessRatioNeeded)]
         currentlyRatedHelpfulNotesIdsNew = set(filteredNotesAboveThreshold.sort_values(by='helpfulnessRatio', ascending=False)[:maxCurrentlyRatedHelpfulNotes].index)
 
-        #Does our (current note) occur in the currentlyRatedHelpfulNotesIdsNew?
+        #Does our (current note) occur in the top ranked notes?
         if randomNoteId in currentlyRatedHelpfulNotesIdsNew:
             return numberOfAccounts
 
-        numberOfAccounts += 1        
+        numberOfAccounts += 1  
+        #allow a maximum of 10 fake accounts to be used by the attacker (for computational reasons)     
         if numberOfAccounts > 10:
             return 10
 
-maxCurrentlyRatedHelpfulNotes = 1
-minRatingsNeeded = 5
+'''The variables can be changed according to requirements of your experiments'''
+
+maxCurrentlyRatedHelpfulNotes = 1 #NUMBER OF TOP-RANKED NOTES
+minRatingsNeeded = 5 
 minHelpfulnessRatioNeeded = 0.84
 
 numberOfAccountsTakenToMakeRandomNoteCurrrentlyRatedHelpful = {}
@@ -92,6 +104,9 @@ for tweetId in tqdm(totalTweets):
         
     else:
         rem.add(tweetId)
+
+'''The results are stored in the results folder. 
+You will need to create an empty results folder if it does not exist.'''
 
 with open('results/bw-insertion.pickle', 'rb') as handle:
         pickle.dump(insertion_bw, handle, protocol=pickle.HIGHEST_PROTOCOL)
