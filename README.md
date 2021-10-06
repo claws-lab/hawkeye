@@ -30,9 +30,9 @@ If you make use of this code, the HawkEye algorithm, please cite the following p
 [![HawkEye short video]()]()
 
 
-### Datasets 
+### Dataset
 Links to datasets used in the paper:
-- [Birdwatch](https://twitter.github.io/birdwatch/contributing/download-data/)
+- [Birdwatch Data](https://twitter.github.io/birdwatch/contributing/download-data/)
 
 
 ### Dataset format
