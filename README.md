@@ -29,6 +29,9 @@ If you make use of this code, the HawkEye algorithm, please cite the following p
 
 [![HawkEye short video]()]()
 
+### Repository Structure
+
+All code and data is stored in `src/code/` and `src/data/` folder respectively. 
 
 ### Dataset
 Links to datasets used in the paper:
