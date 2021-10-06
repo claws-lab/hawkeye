@@ -1,4 +1,4 @@
-## HawkEye: A Robust Reputation System forCommunity-based Counter-Misinformation
+## HawkEye: A Robust Reputation System for Community-based Counter-Misinformation
 
 #### Authors : [Rohit Mujumdar](https://rohitmujumdar.github.io/), [Srijan Kumar](http://cs.stanford.edu/~srijan)
 
