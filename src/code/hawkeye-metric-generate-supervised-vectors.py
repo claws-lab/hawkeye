@@ -1,7 +1,7 @@
-'''This script is used to generate the vectors, which will be used to trais a model
+'''This script is used to generate the vectors, which will be later used to train a model
 to detect misinformation tweets. Each tweet is represetned as a feature vector of its 
 accuracy scores across multiple runs of HawkEye for different combinations of values 
-of the weighing constants  and of the smoothing parameters'''
+of the weighing constants and of the smoothing parameters'''
 
 import pandas as pd
 import pickle5
@@ -11,8 +11,8 @@ from tqdm import tqdm
 with open('results/hawkeye_all_combination_parameter_runs_result.pickle', 'rb') as handle:
     results = dict(pickle5.load(handle))
         
-a = [0,1,2]
-b = [0,0.5,1]
+a = [0,1,2] #CHANGE THIS TO CHANGE/ADD VALUES OF WEIGHING CONSTANTS
+b = [0,0.5,1] #CHANGE THIS TO CHANGE/ADD VALUES OF SMOOTHING PARAMETERS
 parameterCombinations = list(itertools.product(a,a,a,a,b,b,b))
 
 notesGlobal = pd.read_csv("..//data//notes-00000-13-04-21.tsv", sep='\t')
