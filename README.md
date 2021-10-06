@@ -27,57 +27,30 @@ If you make use of this code, the HawkEye algorithm, please cite the following p
 
 ### Short Video Explanation of HawkEye (External Link to YouTube)
 
-[![HawkEye short video]()](https://www.youtube.com/watch?v=ItBmU8681j0)
+[![HawkEye short video]()]()
 
 
 ### Datasets 
 Links to datasets used in the paper:
-- [Birdwatch](http://snap.stanford.edu/jodie/reddit.csv)
+- [Birdwatch](https://twitter.github.io/birdwatch/contributing/download-data/)
 
 
 ### Dataset format
 
-The networks are stored under the `data/` folder, one file per network. The filename should be `<network>.csv`.
-
-The network should be in the following format:
-- One line per interaction/edge.
-- Each line should be: *user, item, timestamp, state label, comma-separated array of features*.
-- First line is the network format. 
-- *User* and *item* fields can be alphanumeric.
-- *Timestamp* should be in cardinal format (not in datetime).
-- *State label* should be 1 whenever the user state changes, 0 otherwise. If there are no state labels, use 0 for all interactions.
-- *Feature list* can be as long as desired. It should be atleast 1 dimensional. If there are no features, use 0 for all interactions.
-
-For example, the first few lines of a dataset can be:
-```
-user,item,timestamp,state_label,comma_separated_list_of_features
-0,0,0.0,0,0.1,0.3,10.7
-2,1,6.0,0,0.2,0.4,0.6
-5,0,41.0,0,0.1,15.0,0.6
-3,2,49.0,1,100.7,0.8,0.9
-```
+The data files used for this work are stored under the `data/` folder, one CSV file each for notes and ratings. The filename is according to the nomenclature on the official [Birdwatch data download page](https://twitter.github.io/birdwatch/contributing/download-data/). The format of CSV files and the meaning of the columns can be found on the [Birdwatch data download page](https://twitter.github.io/birdwatch/contributing/download-data/). 
 
 
 ### Code setup and Requirements
 
-Recent versions of PyTorch, numpy, sklearn, tqdm, and gpustat. You can install all the required packages using the following command:
+Recent versions of Pandas, numpy, sklearn, tqdm, matplotlib, seaborn, and tweepy. `requirements.txt` can be found in the `code/` folder. You can install all the required packages using the following command:
 ```
     $ pip install -r requirements.txt
 ```
 
-To initialize the directories needed to store data and outputs, use the following command. This will create `data/`, `saved_models/`, and `results/` directories.
-```
-    $ chmod +x initialize.sh
-    $ ./initialize.sh
-```
+A `results/` directory needs to be created in the `code/` folder.
 
-To download the datasets used in the paper, use the following command. This will download four datasets under the `data/` directory: `reddit.csv`, `wikipedia.csv`, `mooc.csv`, and `lastfm.csv`.
-```
-    $ chmod +x download_data.sh
-    $ ./download_data.sh
-```
 
-### Running the JODIE code
+### Running the HawkEye scripts
 
 To train the JODIE model using the `data/<network>.csv` dataset, use the following command. This will save a model for every epoch in the `saved_models/<network>/` directory.
 ```
@@ -137,7 +110,7 @@ This code can be given the following command-line arguments:
 ### References 
 *Predicting Dynamic Embedding Trajectory in Temporal Interaction Networks*. Srijan Kumar, Xikun Zhang, Jure Leskovec. ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD), 2019. 
 
-If you make use of this code, the JODIE algorithm, the T-batch algorithm, or the datasets in your work, please cite the following paper:
+If you make use of this code or the HawkEye algorithm in your work, please cite the following paper:
 ```
  @inproceedings{kumar2019predicting,
 	title={Predicting Dynamic Embedding Trajectory in Temporal Interaction Networks},
