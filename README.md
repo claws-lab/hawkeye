@@ -45,7 +45,7 @@ The data files used for this work are stored under the `data/` folder, one CSV f
 
 ### Code setup and Requirements
 
-Recent versions of Pandas, numpy, sklearn, tqdm, matplotlib, seaborn, and tweepy. `requirements.txt` can be found in the `code/` folder. You can install all the required packages using the following command:
+The code in this repo uses Python 3.7 and recent versions of Pandas, numpy, sklearn, tqdm, matplotlib, seaborn, and tweepy. `requirements.txt` can be found in the `code/` folder. You can install all the required packages using the following command:
 ```
     $ pip install -r requirements.txt
 ```
@@ -55,4 +55,6 @@ A `results/` directory needs to be created in the `code/` folder.
 
 ### Running the HawkEye scripts
 
-
+Jupyter notebooks : Run all the cells in chrological order. 
+Python scripts : Run all scripts using `python file-name.py`
+Comments in the code description of the goal of the script and the functions used in it. Instructions about what to change in the code are also present.  
