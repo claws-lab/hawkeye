@@ -8,11 +8,15 @@ import pickle5
 import itertools
 from tqdm import tqdm
 
+'''Read this file stores the accuracy obtained for each tweet by running the HawkEye 
+with different combinations of weighing constants and parameters'''
 with open('results/hawkeye_all_combination_parameter_runs_result.pickle', 'rb') as handle:
     results = dict(pickle5.load(handle))
         
-a = [0,1,2] #CHANGE THIS TO CHANGE/ADD VALUES OF WEIGHING CONSTANTS
-b = [0,0.5,1] #CHANGE THIS TO CHANGE/ADD VALUES OF SMOOTHING PARAMETERS
+'''These paramters and constants must be the same as those used in 
+run-hawkeye-for-different-parameter-combinations.py script'''
+a = [0,1,2]
+b = [0,0.5,1]
 parameterCombinations = list(itertools.product(a,a,a,a,b,b,b))
 
 notesGlobal = pd.read_csv("..//data//notes-00000-13-04-21.tsv", sep='\t')

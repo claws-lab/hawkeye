@@ -1,3 +1,6 @@
+'''This script is used to generate and store the accuracy obtained for each tweet 
+by running the HawkEye with different combinations of weighing constants and parameters'''
+
 import pandas as pd
 import numpy as np
 import math
@@ -135,8 +138,8 @@ if __name__ == '__main__':
                     'mu_t' : mu_t,
                     'mu_g' : mu_g}
     
-    a = [0,1,2]
-    b = [0,0.5,1]
+    a = [0,1,2] #CHANGE THIS TO CHANGE/ADD VALUES OF WEIGHING CONSTANTS
+    b = [0,0.5,1] #CHANGE THIS TO CHANGE/ADD VALUES OF SMOOTHING PARAMETERS
     parameterCombinations = list(itertools.product(a,a,a,a,b,b,b))
 
     results = {}
@@ -146,5 +149,5 @@ if __name__ == '__main__':
     results = runRev2(results,parameterCombination,keywordArgs)
     results_dict = dict(results)
     
-    with open('hawkeye_all_combination_parameter_runs_result.pickle', 'wb') as handle:
+    with open('results/hawkeye_all_combination_parameter_runs_result.pickle', 'wb') as handle:
         pickle.dump(results_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
