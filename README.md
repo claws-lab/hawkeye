@@ -20,7 +20,6 @@ If you make use of this code, the HawkEye algorithm, please cite the following p
   title={HawkEye: A Robust Reputation System for Community-based Counter-Misinformation},
   author={Mujumdar, Rohit and Kumar, Srijan},
   booktitle={2021 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM 2021)},
-  pages={620--627},
   year={2021},
   organization={IEEE}
 }
