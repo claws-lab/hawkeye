@@ -2,9 +2,9 @@
 
 #### Authors : [Rohit Mujumdar](https://rohitmujumdar.github.io/), [Srijan Kumar](http://cs.stanford.edu/~srijan)
 
-#### [Link to the paper]()
+<!--#### [Link to the paper]()
 #### [Link to the slides]()
-#### [Brief video explanation]()
+#### [Brief video explanation]()-->
 
 ### About HawkEye
 
@@ -16,18 +16,19 @@ We compare the Birdwatch and HawkEye models' robustness against an attacker whos
 
 If you make use of this code, the HawkEye algorithm, please cite the following paper:
 ```
- @inproceedings{kumar2019predicting,
-	title={Predicting Dynamic Embedding Trajectory in Temporal Interaction Networks},
-	author={Kumar, Srijan and Zhang, Xikun and Leskovec, Jure},
-	booktitle={Proceedings of the 25th ACM SIGKDD international conference on Knowledge discovery and data mining},
-	year={2019},
-	organization={ACM}
- }
+ @inproceedings{mujumdar2021hawkeye,
+  title={HawkEye: A Robust Reputation System for Community-based Counter-Misinformation},
+  author={Mujumdar, Rohit and Kumar, Srijan},
+  booktitle={2021 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM 2021)},
+  pages={620--627},
+  year={2021},
+  organization={IEEE}
+}
 ```
 
-### Short Video Explanation of HawkEye (External Link to YouTube)
+<!--### Short Video Explanation of HawkEye (External Link to YouTube)
 
-[![HawkEye short video]()]()
+[![HawkEye short video]()]()-->
 
 ### Repository Structure
 
@@ -55,6 +56,6 @@ A `results/` directory needs to be created in the `code/` folder.
 
 ### Running the HawkEye scripts
 
-Jupyter notebooks : Run all the cells in chrological order. 
-Python scripts : Run all scripts using `python file-name.py`
+Jupyter notebooks : Run all the cells in chrological order. <br>
+Python scripts : Run all scripts using `python file-name.py` <br>
 Comments in the code description of the goal of the script and the functions used in it. Instructions about what to change in the code are also present.  
