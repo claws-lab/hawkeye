@@ -2,13 +2,13 @@
 
 #### Authors : [Rohit Mujumdar](https://rohitmujumdar.github.io/), [Srijan Kumar](http://cs.stanford.edu/~srijan)
 
-<!--#### [Link to the paper]()
-#### [Link to the slides]()
+#### [Link to the paper](https://www.cc.gatech.edu/~srijan/pubs/hawkeye-asonam21.pdf)
+<!--#### [Link to the slides]()
 #### [Brief video explanation]()-->
 
 ### About HawkEye
 
-Identifying misinformation is a critical task on web and social media platforms. Recent efforts have focused on leveraging the community of ordinary users to detect, counter, and curb misinformation. Twitter launched a community-driven misinformation detection service called [Birdwatch](https://blog.twitter.com/en_us/topics/product/2021/introducing-birdwatch-a-community-based-approach-to-misinformation), where users provide notes to label tweets as misleading or not, and rate other users' notes as being 'helpful' or not. However, malicious users can inject fake notes and helpfulness ratings to manipulate the system for their gains. In this work, we investigate the robustness of Birdwatch against adversaries. We show that the current Birdwatch system is vulnerable to adversarial attacks - using only a few fake accounts, an adversary can promote any random note as one of the top ranking notes. 
+Identifying misinformation is a critical task on web and social media platforms. Recent efforts have focused on leveraging the community of ordinary users to detect, counter, and curb misinformation. Twitter launched a community-driven misinformation detection service called [Birdwatch](https://blog.twitter.com/en_us/topics/product/2021/introducing-birdwatch-a-community-based-approach-to-misinformation), where users provide notes to label tweets as misinformation or not, and rate other users' notes as being 'helpful' or not. However, malicious users can inject fake notes and helpfulness ratings to manipulate the system for their gains. In this work, we investigate the robustness of Birdwatch against adversaries. We show that the current Birdwatch system is vulnerable to adversarial attacks - using only a few fake accounts, an adversary can promote any random note as one of the top ranking notes. 
 
 To overcome this vulnerability, we propose **HawkEye**, a graph-based recursive algorithm that leverages the global graph structure to quantifyall the quality metrics. Since many users will only write andrate a few notes and many tweets will only have a few notes, we introduce a Laplacian smoothing technique to overcomethis cold-start problem. We posit that HawkEye will be more robust to adversaries.
 
